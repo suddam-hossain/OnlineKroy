@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "422444171382",
+    "project_id": "online-kroy",
+    "storage_bucket": "online-kroy.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:422444171382:android:85c46a299114c2107bdf57",
+        "android_client_info": {
+          "package_name": "com.onlinekroy.onlinekroy"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBnJ0IiIwfdcnOkHnExLy-bzJ6kBPJuY1s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
