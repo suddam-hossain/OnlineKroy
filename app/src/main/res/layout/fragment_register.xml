@@ -7,7 +7,7 @@
     android:gravity="center"
     android:background="#FFFFFF"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".RegisterFragment">
+    tools:context=".views.register.RegisterFragment">
     <ImageView
         android:id="@+id/logo_img"
         android:layout_gravity="center"

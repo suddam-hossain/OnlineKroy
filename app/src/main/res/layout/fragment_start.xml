@@ -7,7 +7,7 @@
     android:orientation="vertical"
 
     android:background="#FFFFFF"
-    tools:context=".StartFragment">
+    tools:context=".views.starter.StartFragment">
 <ImageView
     android:id="@+id/logo_img"
     android:layout_gravity="center"
