@@ -27,7 +27,7 @@
             android:textAppearance="@style/TextAppearance.Material3.TitleLarge"
             android:fontFamily="@font/poppins"
             android:paddingHorizontal="4dp"
-            android:text="Artificial Flower Vase with flower"
+            android:text="Artificial Flower Vase "
             app:layout_constraintTop_toBottomOf="@id/iv_product"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
@@ -39,7 +39,7 @@
             android:ellipsize="end"
             android:maxLines="2"
             android:paddingHorizontal="4dp"
-            android:text="প্রিমিয়াম আর্টিফিসিয়াল ফ্লাওয়ার। খুবই আকর্ষনীয় ডিজাইনের সাইকেল টব এবং ফুলের ডিজাইন।"
+            android:text="প্রিমিয়াম আর্টিফিসিয়াল ফ্লাওয়ার। "
             app:layout_constraintTop_toBottomOf="@id/txt_product_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
