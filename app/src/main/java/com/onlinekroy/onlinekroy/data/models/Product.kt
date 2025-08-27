@@ -7,5 +7,5 @@ data class Product(
     var amount: Int = 0,
     var imageLink: String = "",
     var sellerID: String = "",
-    var product: String = ""
+    var productID: String = ""
 )

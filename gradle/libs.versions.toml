@@ -24,6 +24,7 @@ fragment = "1.8.9"
 hilt="2.57"
 
 imagePicker = "2.1"
+coil= "2.7.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -49,7 +50,7 @@ hilt-android= { group = "com.google.dagger", name = "hilt-android", version.ref 
 hilt-compiler= { group = "com.google.dagger", name = "hilt-compiler", version.ref = "hilt" }
 
 imagePicker = { group = "com.github.dhaval2404", name = "imagePicker", version.ref = "imagePicker" }
-
+coil = { group = "io.coil-kt", name = "coil", version.ref = "coil" }
 
 
 

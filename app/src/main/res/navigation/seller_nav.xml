@@ -8,16 +8,16 @@
     <fragment
         android:id="@+id/myProductFragment"
         android:name="com.onlinekroy.onlinekroy.views.dashboard.seller.products.MyProductFragment"
-        android:label="fragment_my_product"
+        android:label="My Products"
         tools:layout="@layout/fragment_my_product" />
     <fragment
         android:id="@+id/uploadProductFragment"
         android:name="com.onlinekroy.onlinekroy.views.dashboard.seller.upload.UploadProductFragment"
-        android:label="fragment_upload_product"
+        android:label="Upload Product"
         tools:layout="@layout/fragment_upload_product" />
     <fragment
         android:id="@+id/sellerProfileFragment"
         android:name="com.onlinekroy.onlinekroy.views.dashboard.seller.profile.SellerProfileFragment"
-        android:label="fragment_seller_profile"
+        android:label="Profile"
         tools:layout="@layout/fragment_seller_profile" />
 </navigation>

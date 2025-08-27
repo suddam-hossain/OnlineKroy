@@ -62,7 +62,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
                     loading.dismiss()
                     Toast.makeText(context, "User Logged In: ${it.data}", Toast.LENGTH_SHORT).show()
                     startActivity(Intent(requireContext(), SellerDashboard::class.java))
-                   // requireActivity().finish()
+                    requireActivity().finish()
                 }
             }
         }

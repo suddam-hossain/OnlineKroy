@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="2dp"
+    app:cardCornerRadius="8dp"
+    android:layout_height="wrap_content">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_product"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintDimensionRatio="1:1"
+            android:src="@drawable/flower1"
+            android:scaleType="centerInside"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"/>
+
+        <TextView
+            android:id="@+id/txt_product_name"
+            android:textAppearance="@style/TextAppearance.Material3.TitleLarge"
+            android:fontFamily="@font/poppins"
+            android:paddingHorizontal="4dp"
+            android:text="Artificial Flower Vase with flower"
+            app:layout_constraintTop_toBottomOf="@id/iv_product"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/txt_product_description"
+            android:textAppearance="@style/TextAppearance.Material3.TitleSmall"
+            android:fontFamily="@font/poppins"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:paddingHorizontal="4dp"
+            android:text="প্রিমিয়াম আর্টিফিসিয়াল ফ্লাওয়ার। খুবই আকর্ষনীয় ডিজাইনের সাইকেল টব এবং ফুলের ডিজাইন।"
+            app:layout_constraintTop_toBottomOf="@id/txt_product_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/txt_product_stock"
+            android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+            android:fontFamily="@font/poppins"
+            android:paddingHorizontal="4dp"
+            android:textStyle="bold"
+            android:text="Stock : 250"
+            app:layout_constraintTop_toBottomOf="@id/txt_product_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/txt_product_price"
+            android:textAppearance="@style/TextAppearance.Material3.TitleLarge"
+            android:fontFamily="@font/poppins"
+            android:paddingHorizontal="4dp"
+            android:text="Price: Tk 1150"
+            app:layout_constraintTop_toBottomOf="@id/txt_product_stock"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

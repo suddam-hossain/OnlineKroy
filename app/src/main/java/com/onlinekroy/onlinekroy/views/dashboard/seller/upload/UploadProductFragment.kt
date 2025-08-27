@@ -2,36 +2,43 @@ package com.onlinekroy.onlinekroy.views.dashboard.seller.upload
 
 import android.Manifest
 import android.app.Activity
+import android.content.Intent
 import android.os.Build
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.activity.result.registerForActivityResult
-import androidx.fragment.app.Fragment
-import com.github.dhaval2404.imagepicker.ImagePicker
-import com.onlinekroy.onlinekroy.R
+import androidx.fragment.app.viewModels
 import com.onlinekroy.onlinekroy.base.BaseFragment
+import com.onlinekroy.onlinekroy.core.DataState
 import com.onlinekroy.onlinekroy.core.areAllPermissionsGranted
 import com.onlinekroy.onlinekroy.core.extract
 import com.onlinekroy.onlinekroy.core.requestPermissions
 import com.onlinekroy.onlinekroy.data.models.Product
 import com.onlinekroy.onlinekroy.databinding.FragmentUploadProductBinding
+import com.onlinekroy.onlinekroy.views.dashboard.seller.SellerDashboard
+import com.github.dhaval2404.imagepicker.ImagePicker
+import com.google.firebase.auth.FirebaseAuth
+import dagger.hilt.android.AndroidEntryPoint
+import java.util.UUID
 
+@AndroidEntryPoint
 class UploadProductFragment : BaseFragment<FragmentUploadProductBinding>(
     FragmentUploadProductBinding::inflate
 ) {
+    private val product : Product by lazy() {
+        Product()
+    }
+    private val viewModel: UploadProductViewModel by viewModels ()
     override fun setListener() {
 
         permissionsRequest = getPermissionsRequest()
-        with(binding){
+
+        with(binding) {
             ivProduct.setOnClickListener {
-                requestPermissions(permissionsRequest, permissionList)
+                requestPermissions(permissionsRequest,permissionList)
             }
+
 
             btnUploadProduct.setOnClickListener {
 
@@ -40,22 +47,34 @@ class UploadProductFragment : BaseFragment<FragmentUploadProductBinding>(
                 val description = etProductDescription.extract()
                 val amount = etProductAmount.extract()
 
-                val product = Product(
-                    name = name,
-                    description = description,
-                    price = price.toDouble(),
-                    amount = amount.toInt()
-                )
+
+                FirebaseAuth.getInstance().currentUser?.let {
+                    product.apply {
+                        this.productID = UUID.randomUUID().toString()
+                        this.sellerID = it.uid
+                        this.name = name
+                        this.description = description
+                        this.price = price.toDouble()
+                        this.amount = amount.toInt()
+                    }
+                }
+
+
+
                 uploadProduct(product)
 
+              //  startActivity(Intent(requireContext(), SellerDashboard::class.java))
+              //  requireActivity().finish()
 
             }
         }
+
     }
 
     private fun getPermissionsRequest(): ActivityResultLauncher<Array<String>> {
 
         return registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()){
+
             if (areAllPermissionsGranted(permissionList)){
 
                 ImagePicker.with(this)
@@ -64,26 +83,44 @@ class UploadProductFragment : BaseFragment<FragmentUploadProductBinding>(
                     .createIntent { intent ->
                         startForProfileImageResult.launch(intent)
                     }
-
-
-                Toast.makeText(requireContext(), "Okay", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Ase", Toast.LENGTH_LONG).show()
             }else{
-                Toast.makeText(requireContext(), "Failed", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Nai", Toast.LENGTH_LONG).show()
             }
+
+
         }
+
     }
 
     private fun uploadProduct(product: Product) {
 
-
+        viewModel.productUpload(product)
     }
 
     override fun allObserver() {
 
+        viewModel.productUploadResponse.observe(viewLifecycleOwner){
+
+            when(it){
+                is DataState.Error-> {
+                    loading.dismiss()
+                }
+                is DataState.Loading -> {
+                    loading.show()
+                }
+                is DataState.Success -> {
+                    Toast.makeText(requireContext(), it.data, Toast.LENGTH_LONG).show()
+                    loading.dismiss()
+                }
+
+            }
+        }
+
     }
 
     companion object{
-        private val permissionList = if(Build.VERSION.SDK_INT >= 33){
+        private val permissionList = if (Build.VERSION.SDK_INT >=33){
             arrayOf(
                 Manifest.permission.CAMERA,
                 Manifest.permission.READ_MEDIA_IMAGES
@@ -93,14 +130,9 @@ class UploadProductFragment : BaseFragment<FragmentUploadProductBinding>(
                 Manifest.permission.CAMERA,
                 Manifest.permission.READ_EXTERNAL_STORAGE,
                 Manifest.permission.WRITE_EXTERNAL_STORAGE
-
             )
         }
-
-
-
     }
-
     private lateinit var permissionsRequest: ActivityResultLauncher<Array<String>>
 
 
@@ -110,10 +142,9 @@ class UploadProductFragment : BaseFragment<FragmentUploadProductBinding>(
             val data = result.data
 
             if (resultCode == Activity.RESULT_OK) {
-                //Image Uri will not be null for RESULT_OK
                 val fileUri = data?.data!!
                 binding.ivProduct.setImageURI(fileUri)
-
+                product.imageLink = fileUri.toString()
             } else if (resultCode == ImagePicker.RESULT_ERROR) {
                 Toast.makeText(requireContext(), ImagePicker.getError(data), Toast.LENGTH_SHORT).show()
             } else {

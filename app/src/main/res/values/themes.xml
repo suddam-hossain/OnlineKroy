@@ -1,11 +1,21 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Base.Theme.OnlineKroy" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="android:statusBarColor">@color/my_status_bar_color</item>
+
+        <!-- Use dark icons (true) or light icons (false) -->
+        <item name="android:windowLightStatusBar">true</item>
+
+        <!-- Old behavior: content below status bar -->
+        <item name="android:fitsSystemWindows">true</item>
     </style>
 
     <style name="Theme.OnlineKroy" parent="Base.Theme.OnlineKroy" />
 
-    <style name="Theme.OnlineKroy.App.Bar" parent="Theme.Material3.DayNight"/>
+    <style name="Theme.OnlineKroy.App.Bar" parent="Theme.Material3.DayNight">
+        <item name="android:statusBarColor">@android:color/transparent</item>
+
+        <!-- Make icons dark (if background is light) -->
+        <item name="android:windowLightStatusBar">true</item>
+    </style>
 </resources>

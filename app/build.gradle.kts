@@ -69,4 +69,7 @@ dependencies {
 
     //imagePicker
     implementation(libs.imagePicker)
+
+    //imageView
+    implementation(libs.coil)
 }

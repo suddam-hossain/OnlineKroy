@@ -66,7 +66,7 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(FragmentRegisterB
                     Toast.makeText(context, "Created User: ${it.data}", Toast.LENGTH_SHORT).show()
 
                     startActivity(Intent(requireContext(), SellerDashboard::class.java))
-
+                    requireActivity().finish()
                 }
             }
         }
